@@ -6,7 +6,7 @@ import { healthCheck } from './services/learning-hub';
 function App() {
   const [serverResponse, setServerResponse] = useState<string>('No request made')
   const talkWithServer = () => {
-    healthCheck().then(setServerResponse).catch(setServerResponse);
+    healthCheck().then(setServerResponse).catch(console.log);
   };
 
   return (
