@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { healthCheck } from './services/learning-hub';
+import Homepage from './views/homepage';
+import CodeEditor from './views/codeEditor';
 
 function App() {
   const [serverResponse, setServerResponse] = useState<string>('No request made')
@@ -12,9 +14,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{serverResponse}</p>
-        <button onClick={talkWithServer}>Click me to talk to server</button>
+        <Homepage />
+        <CodeEditor />
       </header>
     </div>
   );
