@@ -1,0 +1,16 @@
+.editor-container {
+    display: flex;
+    justify-content: flex-end;
+    background-color: red;
+    font-size:medium;
+}
+.editor-field {
+    width: 500px;
+    height: 600px;
+}
+.editor-container > div{
+}
+.editor-container > div > div > div > pre {
+    min-height: 500px;
+    max-height: 900px;
+}
