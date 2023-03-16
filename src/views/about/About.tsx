@@ -13,15 +13,28 @@ enum Language {
   JAVA = "Java"
 }
 
+enum CodeSize {
+  SMALL = "small",
+  MEDIUM = "medium", 
+  LARGE = "large"
+}
+
 const mapOfLanguages = new Map<Language, string>()
     .set(Language.CPP, "cpp")
     .set(Language.JAVA, "java")
     .set(Language.PYTHON, "python");
 
+const mapOfCodeSize = new Map<CodeSize, string>()
+    .set(CodeSize.SMALL, "small")
+    .set(CodeSize.MEDIUM, "medium")
+    .set(CodeSize.LARGE, "large");
+
+
 export default function About() {
-  const [language, setLanguage] = useState<Language>(Language.CPP); 
+  const [language, setLanguage] = useState<Language>(Language.CPP);
+  const [codeSize, setCodeSize] = useState<CodeSize>(CodeSize.SMALL);
   return <div className="editor-container">
-    <div>
+    <div className="editor-options">
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {language}
@@ -29,6 +42,15 @@ export default function About() {
 
         <Dropdown.Menu>
           {Object.values(Language).map(value => <Dropdown.Item key={value} onClick={() => setLanguage(value)}>{value}</Dropdown.Item>)}
+        </Dropdown.Menu>
+      </Dropdown>
+      <Dropdown>
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
+          {codeSize}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          {Object.values(CodeSize).map(value => <Dropdown.Item key={value} onClick={() => setCodeSize(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
       </Dropdown>
     </div>
@@ -40,7 +62,7 @@ export default function About() {
   padding={15}
   data-color-mode="dark"
   style={{
-    fontSize: 15,
+    fontSize: codeSize,
     fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
   }}
 /></div></div>;

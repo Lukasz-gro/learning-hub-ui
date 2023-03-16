@@ -1,16 +1,28 @@
 .editor-container {
     display: flex;
     justify-content: flex-end;
-    background-color: red;
-    font-size:medium;
 }
 .editor-field {
     width: 500px;
     height: 600px;
 }
-.editor-container > div{
-}
 .editor-container > div > div > div > pre {
     min-height: 500px;
     max-height: 900px;
+}
+.editor-options > div {
+    float: left;
+    padding: 5px;
+}
+.editor-options > div > button {
+    background-color: #404348;
+    border-color: black;
+}
+.editor-options > div > button:hover{
+    background-color: #515459;
+    border-color: black;
+}
+.editor-options > div > button{
+    background-color: #515459;
+    border-color: black;
 }
