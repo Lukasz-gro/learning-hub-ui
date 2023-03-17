@@ -3,7 +3,10 @@ import './About.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { useState } from 'react';
-
+import { Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun } from '@fortawesome/free-regular-svg-icons'; 
+import { faMoon } from '@fortawesome/free-solid-svg-icons';
 const code = `
 console.log("hello world");
 `;
@@ -53,6 +56,8 @@ export default function About() {
           {Object.values(CodeSize).map(value => <Dropdown.Item key={value} onClick={() => setCodeSize(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
       </Dropdown>
+      {/* <FontAwesomeIcon icon={faSun} /> */}
+      {/* <FontAwesomeIcon icon={faMoon} /> */}
     </div>
     <div className="editor-field"><CodeEditor
   value={code}
@@ -65,5 +70,9 @@ export default function About() {
     fontSize: codeSize,
     fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
   }}
-/></div></div>;
+/></div>
+  <div className="editor-actions">
+    <Button variant="outline-success">Submit</Button>{' '}
+  </div>
+</div>;
 }

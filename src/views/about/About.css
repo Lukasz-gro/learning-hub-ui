@@ -1,6 +1,12 @@
 .editor-container {
-    display: flex;
-    justify-content: flex-end;
+    position:absolute;
+    bottom:10%;
+    right:10%;
+}
+.editor-container{
+    position: fixed;
+    bottom: 0;
+    right: 5%;
 }
 .editor-field {
     width: 500px;
@@ -10,11 +16,15 @@
     min-height: 500px;
     max-height: 900px;
 }
+.editor-options {
+    margin-top: 10%;
+}
 .editor-options > div {
     float: left;
     padding: 5px;
 }
 .editor-options > div > button {
+    font-family: 'Roboto', sans-serif;
     background-color: #404348;
     border-color: black;
 }
@@ -25,4 +35,12 @@
 .editor-options > div > button{
     background-color: #515459;
     border-color: black;
+}
+.editor-actions{
+    position: relative;
+    left: 40%;
+    top:-20px;
+}
+.editor-options > svg{
+    cursor: pointer;
 }
