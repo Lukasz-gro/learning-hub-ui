@@ -1,4 +1,5 @@
 import "./Button.css"
+
 type Props = {
     onClick: () => void;
     label?: string;

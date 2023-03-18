@@ -41,6 +41,10 @@
     left: 40%;
     top:-20px;
 }
-.editor-options > svg{
+.editor-options > svg {
     cursor: pointer;
+    width: 25px;
+    height: 25px;
+    float: right;
+    padding: 10px;
 }
