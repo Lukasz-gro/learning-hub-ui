@@ -4,7 +4,7 @@ import './CodeEditor.css';
 
 export default function CodeEditor() {
     const [code, setCode] = useState<string>();
-
+    
     const sendCode = () => {
         console.log(code);
     };
