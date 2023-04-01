@@ -10,6 +10,7 @@ import About from './views/about/About';
 
 function App() {
   const [serverResponse, setServerResponse] = useState<string>('No request made')
+
   const talkWithServer = () => {
     healthCheck().then(setServerResponse).catch(console.log);
   };
