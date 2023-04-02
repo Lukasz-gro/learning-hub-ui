@@ -6,7 +6,10 @@ export async function healthChecks(): Promise<string> {
     // return (await axios.get('http://localhost:8080/v1/health-check')).data as string;
   }
 
+axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+
 export default function Homepage() {
+    
     const [serverResponse, setServerResponse] = useState<string>('No request made')
 
     const talkWithServer = () => {
