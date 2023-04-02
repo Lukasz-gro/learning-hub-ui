@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { healthCheck } from "../../services/learning-hub";
+import axios from "axios";
+
+export async function healthChecks(): Promise<string> {
+    return (await axios.get('/v1/health-check')).data as string;
+  }
 
 export default function Homepage() {
     const [serverResponse, setServerResponse] = useState<string>('No request made')
 
     const talkWithServer = () => {
-        healthCheck().then(setServerResponse).catch(console.log);
+        healthChecks().then(setServerResponse).catch(console.log);
     };
-    
-    return <button onClick={talkWithServer}>Homepage</button>;
+    console.log(process.env);
+    return <button onClick={talkWithServer}>Health check</button>;
 }
