@@ -1,19 +1,18 @@
-.editor-container {
-    position:absolute;
-    bottom:10%;
-    right:10%;
+.App-header{
+    width: 100%;
+    height: 100%;
+    align-items: end;
 }
-.editor-container{
-    position: fixed;
-    bottom: 0;
-    right: 5%;
+.editor-container {
+    margin-right: 50px;
+    margin-bottom: 200px;
 }
 .editor-field {
-    width: 500px;
+    width: 900px;
     height: 600px;
 }
 .editor-container > div > div > div > pre {
-    min-height: 500px;
+    min-height: 600px;
     max-height: 900px;
 }
 .editor-options {
@@ -37,9 +36,8 @@
     border-color: black;
 }
 .editor-actions{
-    position: relative;
-    left: 40%;
-    top:-20px;
+    margin-top: 40px;
+    margin-left: 820px;
 }
 .editor-options > svg {
     cursor: pointer;
