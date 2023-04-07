@@ -10,7 +10,7 @@ type RouteParams = {
 export default function ProblemView({ params }: { params: RouteParams }) {
   return (
     <div>
-      I'm code editor and this is the problem {params.id}
+      I&apos;m code editor and this is the problem {params.id}
       <TextEditor />
     </div>
   );

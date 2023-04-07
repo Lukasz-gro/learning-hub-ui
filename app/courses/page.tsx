@@ -1,4 +1,4 @@
 export default async function ListOfCourses() {
 
-  return <div>I'm list of courses</div>;
+  return <div>I&apos;m list of courses</div>;
 }
