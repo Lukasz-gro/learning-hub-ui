@@ -14,7 +14,7 @@ function App() {
         <NavHeader />
         <header className="App-header">
           <Routes>
-            <Route index element={<Homepage/>}/>
+            <Route path="/" element={<Homepage/>}/>
             <Route path='course' element={<Courses/>}/>
             <Route path='about' element={<About/>}/>
             <Route path='course/:id/problems' element={<ProblemsList />}/>

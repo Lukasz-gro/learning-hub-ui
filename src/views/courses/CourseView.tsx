@@ -1,7 +1,7 @@
 import { Accordion, Button } from "react-bootstrap"
 import { Course } from "./service.dto"
 import "./Courses.css"
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 type Props = {
   course: Course
