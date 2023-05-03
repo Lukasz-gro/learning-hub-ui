@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { Course } from "./service.dto";
 import { getCoursesList } from "./service";
 import { Alert, Spinner } from "react-bootstrap";
-import CourseView from "./CourseView";
+import CourseCard from "./CourseCard";
 import "./Courses.css"
 
 export default function Courses() {
@@ -38,10 +38,11 @@ export default function Courses() {
       </div>
     )
   }
-
   return (
     <div className="main-container">
-      {courses.map(course => <CourseView key={course.id} course={course}/>)}
+      <div id = "set-of-cards">
+        {courses.map(course => <CourseCard key={course.id} course={course}/>)}
+      </div>
     </div>
   )
 }
