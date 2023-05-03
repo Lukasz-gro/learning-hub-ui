@@ -11,6 +11,6 @@ export default function Homepage() {
     const talkWithServer = () => {
         healthChecks().then(setServerResponse).catch(console.log);
     };
-    console.log(process.env);
+    
     return <button onClick={talkWithServer}>Health check</button>;
 }

@@ -7,10 +7,10 @@ export default function NavHeader() {
         <Nav.Link href="/">Home</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="code-editor">Code with me</Nav.Link>
+        <Nav.Link href="/course">Courses</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="about">About us</Nav.Link>
+        <Nav.Link href="/about">About us</Nav.Link>
       </Nav.Item>
     </Nav>
   )

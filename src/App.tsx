@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Homepage from './views/homepage';
-import CodeEditor from './views/codeEditor';
 import NavHeader from './navigation/NavHeader';
 import About from './views/about/About';
+import Courses from "./views/courses";
+import ProblemsList from "./views/problemList";
 
 
 function App() {
@@ -13,9 +14,10 @@ function App() {
         <NavHeader />
         <header className="App-header">
           <Routes>
-            <Route index element={<Homepage/>}/>
-            <Route path='code-editor' element={<CodeEditor/>}/>
+            <Route path="/" element={<Homepage/>}/>
+            <Route path='course' element={<Courses/>}/>
             <Route path='about' element={<About/>}/>
+            <Route path='course/:id/problems' element={<ProblemsList />}/>
           </Routes>
         </header>
       </div>

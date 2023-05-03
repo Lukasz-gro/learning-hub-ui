@@ -1,16 +1,13 @@
-
 import './About.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun } from '@fortawesome/free-regular-svg-icons'; 
-import { faMoon } from '@fortawesome/free-solid-svg-icons';
 import { ThemeIcon } from './ThemeIcon';
-const code = `
-console.log("hello world");
-`;
+import { runCode } from '../../services/learning-hub';
+
+const initialCode = 'print("Hello world mordo")';
+
 enum Language {
   CPP = "C++",
   PYTHON = "Python", 
@@ -37,6 +34,14 @@ export default function About() {
   const [language, setLanguage] = useState<Language>(Language.CPP);
   const [codeSize, setCodeSize] = useState<CodeSize>(CodeSize.SMALL);
   const [theme, setTheme] = useState<Theme>(Theme.DARK);
+  const [code, setCode] = useState<string>(initialCode);
+  const [codeResult, setCodeResult] = useState<string>();
+
+  const onSubmit = () => {
+    runCode(code, mapOfLanguages.get(language)!, 1, 2)
+      .then(setCodeResult)
+      .catch(err => setCodeResult('Error from server'))
+  }
 
   return <div className="editor-container">
     <div className="editor-options">
@@ -60,20 +65,23 @@ export default function About() {
       </Dropdown>
       <ThemeIcon setTheme={setTheme} currentTheme={theme} />
     </div>
-    <div className="editor-field"><CodeEditor
-  value={code}
-  language={mapOfLanguages.get(language)}
-  placeholder={`Please enter ${language} code.`}
-  onChange={(evn) => {}}
-  padding={15}
-  data-color-mode={theme}
-  style={{
-    fontSize: codeSize,
-    fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-  }}
-/></div>
+    <div className="editor-field">
+      <CodeEditor
+        value={code}
+        language={mapOfLanguages.get(language)}
+        placeholder={`Please enter ${language} code.`}
+        onChange={({ target: { value } }) => setCode(value) }
+        padding={15}
+        data-color-mode={theme}
+        style={{
+          fontSize: codeSize,
+          fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
+        }}
+      />
+    </div>
   <div className="editor-actions">
-    <Button variant="outline-success">Submit</Button>{' '}
+    <Button onClick={onSubmit} variant="outline-success">Submit</Button>
   </div>
+  { codeResult && <div>{codeResult}</div> }
 </div>;
 }
