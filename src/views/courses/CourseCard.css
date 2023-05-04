@@ -57,6 +57,7 @@
   }
   
   .card-image {
+    color: rgb(240, 240, 240);
     align-items: center;
     display: flex;
     height: 150px;

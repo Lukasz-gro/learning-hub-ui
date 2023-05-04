@@ -9,7 +9,7 @@ export default defineConfig({
     port : 5173,
     proxy: {
         '^/v1/.*': {
-            target: 'http://16.16.104.160',
+            target: 'http://16.16.91.173',
             changeOrigin: true,
             secure: false
         }
