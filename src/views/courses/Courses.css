@@ -10,7 +10,8 @@
 .accordeon-base {
   min-width: 80%;
 }
-#set-of-cards{
+
+.set-of-cards{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

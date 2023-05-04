@@ -3,6 +3,7 @@ import { Course } from "./service.dto";
 import { getCoursesList } from "./service";
 import { Alert, Spinner } from "react-bootstrap";
 import CourseCard from "./CourseCard";
+import { Link } from 'react-router-dom'
 import "./Courses.css"
 
 export default function Courses() {
@@ -38,10 +39,14 @@ export default function Courses() {
       </div>
     )
   }
+
   return (
     <div className="main-container">
-      <div id = "set-of-cards">
-        {courses.map(course => <CourseCard key={course.id} course={course}/>)}
+      <div className="set-of-cards">
+        {courses.map(course => (
+          <Link key={course.id} to={`/course/${course.id}/main`} style={{ textDecoration: 'none' }}>
+            <CourseCard course={course}/>
+          </Link>))}
       </div>
     </div>
   )

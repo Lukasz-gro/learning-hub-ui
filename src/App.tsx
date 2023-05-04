@@ -5,6 +5,8 @@ import NavHeader from './navigation/NavHeader';
 import About from './views/about/About';
 import Courses from "./views/courses";
 import ProblemsList from "./views/problemList";
+import CodeEditorView from "./views/codeEditor/CodeEditorView";
+import CourseMainView from "./views/courses/CourseMainView";
 
 
 function App() {
@@ -17,7 +19,9 @@ function App() {
             <Route path="/" element={<Homepage/>}/>
             <Route path='course' element={<Courses/>}/>
             <Route path='about' element={<About/>}/>
-            <Route path='course/:id/problems' element={<ProblemsList />}/>
+            <Route path='course/:courseId/main' element={<CourseMainView />}/>
+            <Route path='course/:courseId/problems' element={<ProblemsList />}/>
+            <Route path='code/:courseId/:problemId' element={<CodeEditorView/>}/>
           </Routes>
         </header>
       </div>

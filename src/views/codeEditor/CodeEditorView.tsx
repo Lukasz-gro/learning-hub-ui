@@ -1,4 +1,4 @@
-import './About.css';
+import './CodeEditorStyles.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import CodeEditor from '@uiw/react-textarea-code-editor';
 import { useState } from 'react';
@@ -28,17 +28,17 @@ const mapOfLanguages = new Map<Language, string>()
     .set(Language.JAVA, "java")
     .set(Language.PYTHON, "python");
 
-export default function About() {
+export default function CodeEditorView() {
   const [language, setLanguage] = useState<Language>(Language.CPP);
   const [codeSize, setCodeSize] = useState<CodeSize>(CodeSize.SMALL);
   const [theme, setTheme] = useState<Theme>(Theme.DARK);
-  const [code, setCode] = useState<string>("Hello");
+  const [code, setCode] = useState<string>("");
   const [codeResult, setCodeResult] = useState<string>();
 
   const onSubmit = () => {
     runCode(code, mapOfLanguages.get(language)!, 1, 2)
       .then(setCodeResult)
-      .catch(err => setCodeResult('Error from server'))
+      .catch(() => setCodeResult('Error from server'))
   }
 
   return <div className="editor-container">
