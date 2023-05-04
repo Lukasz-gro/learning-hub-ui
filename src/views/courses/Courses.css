@@ -10,3 +10,10 @@
 .accordeon-base {
   min-width: 80%;
 }
+#set-of-cards{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;  
+  width: calc(100% - 20px);
+}
