@@ -1,0 +1,88 @@
+:root {
+    --dot-color: #848787;
+    --current-dot-position: 30px;
+  }
+.navMenu {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.navMenu a {
+  color: #f6f4e6;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  display: inline-block;
+  width: 80px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin-right: 10px;
+}
+
+.navMenu a:hover {
+  color: var(--dot-color);
+}
+
+.navMenu .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--dot-color);
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-transform: translateX(40px);
+  transform: translateX(40px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.navMenu a:nth-child(1):hover ~ .dot {
+  -webkit-transform: translateX(40px);
+  transform: translateX(40px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(2):hover ~ .dot {
+  -webkit-transform: translateX(130px);
+  transform: translateX(130px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(3):hover ~ .dot {
+  -webkit-transform: translateX(215px);
+  transform: translateX(215px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.navMenu a:nth-child(4):hover ~ .dot {
+  -webkit-transform: translateX(285px);
+  transform: translateX(285px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
+}
+
+.profiles-nav-info {
+    position: absolute;
+    top: 5%;
+    left: 300%;
+    height: 50px;
+    width: 200px;
+}
+
+.selected-tab {
+    color: red;
+}
+
+.defoult-tab {
+    
+}

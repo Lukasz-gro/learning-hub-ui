@@ -7,7 +7,6 @@ import Courses from "./views/courses";
 import CourseMainView from "./views/courses/CourseMainView";
 import Problem from "./views/problem";
 
-
 function App() {
   return (
     <BrowserRouter>
