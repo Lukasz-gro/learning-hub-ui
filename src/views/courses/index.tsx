@@ -1,36 +1,20 @@
-import { useEffect, useState } from "react"
-import { Course } from "./service.dto";
-import { getCoursesList } from "./service";
 import { Alert, Spinner } from "react-bootstrap";
 import CourseCard from "./CourseCard";
 import { Link } from 'react-router-dom'
 import "./Courses.css"
+import useCoursesList from "./useCoursesList";
 
 export default function Courses() {
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { isLoading, isError, data } = useCoursesList();
 
-  useEffect(() => {
-    getCoursesList()
-      .then(response => {
-        setCourses(response);
-        setError(false);
-      })
-      .catch(() => {
-        setError(true);
-      })
-    setLoading(false);
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div>
         <Spinner animation="border" />
       </div>);
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="main-container">
         <Alert variant='danger'>
@@ -43,7 +27,7 @@ export default function Courses() {
   return (
     <div className="main-container">
       <div className="set-of-cards">
-        {courses.map(course => (
+        {data.map(course => (
           <Link key={course.id} to={`/course/${course.id}/main`} style={{ textDecoration: 'none' }}>
             <CourseCard course={course}/>
           </Link>))}

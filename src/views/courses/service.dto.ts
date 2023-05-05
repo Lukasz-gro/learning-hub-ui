@@ -3,3 +3,9 @@ export interface Course {
   name: string,
   description: string
 }
+
+export interface Problem {
+  id: number,
+  name: string,
+  description: string,
+}
