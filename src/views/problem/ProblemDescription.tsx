@@ -1,7 +1,11 @@
-export default function ProblemDescription() {
+type Props = {
+  description: string;
+}
+
+export default function ProblemDescription({ description }: Props) {
   return (
     <div>
-      This a place where the description will be shown
+      {description}
     </div>
   )
 }
