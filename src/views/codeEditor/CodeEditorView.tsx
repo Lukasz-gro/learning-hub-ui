@@ -32,11 +32,11 @@ export default function CodeEditorView() {
   const [language, setLanguage] = useState<Language>(Language.CPP);
   const [codeSize, setCodeSize] = useState<CodeSize>(CodeSize.SMALL);
   const [theme, setTheme] = useState<Theme>(Theme.DARK);
-  const [code, setCode] = useState<string>("");
+  const [code, setCode] = useState<string | undefined>("");
   const [codeResult, setCodeResult] = useState<string>();
 
   const onSubmit = () => {
-    runCode(code, mapOfLanguages.get(language)!, 1, 2)
+    runCode(code || "", mapOfLanguages.get(language)!, 1, 2)
       .then(setCodeResult)
       .catch(() => setCodeResult('Error from server'))
   }
@@ -64,10 +64,12 @@ export default function CodeEditorView() {
     </div>
     <div className="editor-field">
       <Editor 
-        height="90vh" 
+        height="70vh"
+        width="40vw"
         language={language} 
-        defaultValue="// some comment" 
-        theme={theme}/>
+        value={code}
+        theme={theme}
+        onChange={setCode}/>
     </div>
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>
