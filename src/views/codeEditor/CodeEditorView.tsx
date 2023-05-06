@@ -1,15 +1,15 @@
 import './CodeEditorStyles.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import CodeEditor from '@uiw/react-textarea-code-editor';
+import Editor from '@monaco-editor/react';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { ThemeIcon } from './ThemeIcon';
 import { runCode } from '../../services/learning-hub';
 
 enum Language {
-  CPP = "C++",
-  PYTHON = "Python", 
-  JAVA = "Java"
+  CPP = "cpp",
+  PYTHON = "python", 
+  JAVA = "java"
 }
 
 enum CodeSize {
@@ -20,7 +20,7 @@ enum CodeSize {
 
 export enum Theme {
   LIGHT = "light",
-  DARK = "dark"
+  DARK = "vs-dark"
 }
 
 const mapOfLanguages = new Map<Language, string>()
@@ -47,7 +47,6 @@ export default function CodeEditorView() {
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {language}
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
           {Object.values(Language).map(value => <Dropdown.Item key={value} onClick={() => setLanguage(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
@@ -64,17 +63,11 @@ export default function CodeEditorView() {
       <ThemeIcon setTheme={setTheme} currentTheme={theme} />
     </div>
     <div className="editor-field">
-      <CodeEditor
-        language={mapOfLanguages.get(language)}
-        placeholder={`Please enter ${language} code.`}
-        onChange={({ target: { value } }) => setCode(value) }
-        data-color-mode={theme}
-        style={{
-          color:"red",
-          fontSize: codeSize,
-          fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-        }}
-      />
+      <Editor 
+        height="90vh" 
+        language={language} 
+        defaultValue="// some comment" 
+        theme={theme}/>
     </div>
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>
