@@ -42,7 +42,7 @@ export default function CodeEditorView() {
   }
 
   return <div className="editor-container">
-    <div className="editor-options">
+        <div className="editor-options">
       <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {language}
@@ -65,13 +65,12 @@ export default function CodeEditorView() {
     </div>
     <div className="editor-field">
       <CodeEditor
-        value={code}
         language={mapOfLanguages.get(language)}
         placeholder={`Please enter ${language} code.`}
         onChange={({ target: { value } }) => setCode(value) }
-        padding={15}
         data-color-mode={theme}
         style={{
+          color:"red",
           fontSize: codeSize,
           fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
         }}

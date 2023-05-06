@@ -1,22 +1,57 @@
-.App-header{
-  width: 100%;
-  height: 100%;
-  align-items: end;
-}
 .editor-container {
-  margin-right: 50px;
-  margin-bottom: 200px;
+  position: relative;
+  width:40%;
+  left: 2%;
+  float:left;
 }
-.editor-field {
-  width: 900px;
-  height: 600px;
+
+.editor-options {
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.02);
+  margin-bottom: 3px;
+  border-radius: 10px;
+  margin-top: 0px;
+  width: 100%;
+
+}
+
+.editor-field > div{
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  width: 100%;
+  display: flex;
+}
+
+.editor-options > div > button{
+  background-color: #141414;
+  border: 0px;
+  padding: 0px;
+}
+.editor-options > svg{
+  position: relative;
+  margin-left: auto;
+  border: 0px;
+  padding: 0px;
+}
+
+.editor-options > div > button :hover{
+  background-color: #141414;
+  border: 0px;
+}
+
+/* .editor-options {
+
 }
 .editor-container > div > div > div > pre {
   min-height: 600px;
   max-height: 900px;
+  background-color: rgba(255, 255, 255, 0.02);
 }
-.editor-options {
-  margin-top: 10%;
+.editor-container > div {
+  height: 60px;
 }
 .editor-options > div {
   float: left;
@@ -39,10 +74,4 @@
   margin-top: 40px;
   margin-left: 820px;
 }
-.editor-options > svg {
-  cursor: pointer;
-  width: 25px;
-  height: 25px;
-  float: right;
-  padding: 10px;
-}
+ */
