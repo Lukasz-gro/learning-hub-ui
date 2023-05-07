@@ -3,6 +3,7 @@ import CodeEditorView from "../codeEditor/CodeEditorView";
 import ProblemDescription from "./ProblemDescription";
 import useProblem from "./useProblem";
 import { Spinner, Alert } from "react-bootstrap";
+import "./Problem.css"
 
 export default function Problem() {
   const { problemId } = useParams();
@@ -26,9 +27,9 @@ export default function Problem() {
   }
 
   return (
-    <>
+    <div className="problem-container">
       <ProblemDescription description={data.description}/>
       <CodeEditorView />
-    </>
+    </div>
   )
 }

@@ -1,6 +1,5 @@
 import './About.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import CodeEditor from '@uiw/react-textarea-code-editor';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { ThemeIcon } from './ThemeIcon';
@@ -62,20 +61,6 @@ export default function About() {
         </Dropdown.Menu>
       </Dropdown>
       <ThemeIcon setTheme={setTheme} currentTheme={theme} />
-    </div>
-    <div className="editor-field">
-      <CodeEditor
-        value={code}
-        language={mapOfLanguages.get(language)}
-        placeholder={`Please enter ${language} code.`}
-        onChange={({ target: { value } }) => setCode(value) }
-        padding={15}
-        data-color-mode={theme}
-        style={{
-          fontSize: codeSize,
-          fontFamily: 'ui-monospace,SFMono-Regular,SF Mono,Consolas,Liberation Mono,Menlo,monospace',
-        }}
-      />
     </div>
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>
