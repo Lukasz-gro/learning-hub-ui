@@ -51,7 +51,7 @@ export default function CodeEditorView() {
           {Object.values(Language).map(value => <Dropdown.Item key={value} onClick={() => setLanguage(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
       </Dropdown>
-      <Dropdown>
+      {/* <Dropdown>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {codeSize}
         </Dropdown.Toggle>
@@ -59,17 +59,20 @@ export default function CodeEditorView() {
         <Dropdown.Menu>
           {Object.values(CodeSize).map(value => <Dropdown.Item key={value} onClick={() => setCodeSize(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
-      </Dropdown>
+      </Dropdown> */}
       <ThemeIcon setTheme={setTheme} currentTheme={theme} />
     </div>
     <div className="editor-field">
       <Editor 
-        height="70vh"
+        height="50vh"
         width="40vw"
         language={language} 
         value={code}
         theme={theme}
         onChange={setCode}/>
+    </div>
+    <div className="compile-info">
+      Result
     </div>
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>

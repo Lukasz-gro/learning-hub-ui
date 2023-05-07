@@ -6,11 +6,14 @@ export default function ProblemDescription({ description }: Props) {
   return (
     <div className="problem-description">
       <div className="problem-name">
-        <h3>23. Prefix Sum</h3>
+        <h4>23. Sort an Array</h4>
       </div>
       <div className="problem-content">
-        {description}
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        {/* {description} */}
+        Given an array of integers nums, sort the array in ascending order and return it.<br/>
+        Input: nums = [5,2,3,1]<br/>
+        Output: [1,2,3,5]<br/>
+        Explanation: After sorting the array, the positions of some numbers are not changed (for example, 2 and 3), while the positions of other numbers are changed (for example, 1 and 5)
       </div>
     </div>
   )

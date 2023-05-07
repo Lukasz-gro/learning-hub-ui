@@ -10,68 +10,77 @@
   align-items: center;
   position: relative;
   height: 50px;
-  background-color: rgba(255, 255, 255, 0.02);
-  margin-bottom: 3px;
-  border-radius: 10px;
+  background-color:#2e2e2e;
   margin-top: 0px;
-  width: 100%;
-
+  width: 101%;
+  border-radius: 5px;
+  border-bottom: 2px solid #454545;
 }
 
-.editor-field > div{
-  background-color: rgba(255, 255, 255, 0.02);
-  border-radius: 10px;
-  width: 100%;
-  display: flex;
+.editor-options.editor-options> div > button {
+  background-color: #2e2e2e;
 }
 
 .editor-options > div > button{
-  background-color: #141414;
+  background-color: #2e2e2e;
   border: 0px;
   padding: 0px;
+  width: 50px;
+  height: 25px;
+  margin-bottom: 15%;
+  margin-left: 20%;
 }
+
+.editor-field {
+  width: 45vh;
+  height: 50vh;
+}
+
 .editor-options > svg{
   position: relative;
   margin-left: auto;
   border: 0px;
-  padding: 0px;
+  padding: 30px;
 }
 
-.editor-options > div > button :hover{
-  background-color: #141414;
+.editor-options.editor-options > div > button:active{
+  background-color: #2e2e2e;
+}
+
+.editor-options > div > button:hover{
+  background-color: #2e2e2e;
+  color: rgb(132, 135, 135);
   border: 0px;
 }
 
-/* .editor-options {
+.compile-info {
+  width: 101%;
+  background-color:#2e2e2e;
+  border-top: 2px solid #454545;
+  border-bottom: 2px solid #454545;
+  margin-top: 1px;
+  height: 15vh;
+  font-size: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.editor-actions {
+  display: flex;
+  align-items: center;
+  width: 102%;
+  margin-top: 1px;
+  margin-left: 0px;
+  height: 6vh;
+  font-size: 15px;
+  position: relative;
+  padding: 10px;
 }
-.editor-container > div > div > div > pre {
-  min-height: 600px;
-  max-height: 900px;
-  background-color: rgba(255, 255, 255, 0.02);
+
+.editor-actions > button {
+  position: relative;
+  margin-left: auto;
 }
-.editor-container > div {
-  height: 60px;
-}
-.editor-options > div {
-  float: left;
-  padding: 5px;
-}
-.editor-options > div > button {
-  font-family: 'Roboto', sans-serif;
-  background-color: #404348;
-  border-color: black;
-}
-.editor-options > div > button:hover{
-  background-color: #515459;
-  border-color: black;
-}
-.editor-options > div > button{
-  background-color: #515459;
-  border-color: black;
-}
-.editor-actions{
-  margin-top: 40px;
-  margin-left: 820px;
-}
- */
+
