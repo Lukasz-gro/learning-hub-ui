@@ -10,7 +10,7 @@ export interface Submit {
   status: string;
 }
 
-export async function queueCode(code: string, language: string, problemId: number, testCase: number): Promise<Submit> {
+export async function queueCode(code: string | undefined, language: string, problemId: number, testCase: number): Promise<Submit> {
   return (await axios.post('/v1/judge/queue-code', {
     code,
     language,

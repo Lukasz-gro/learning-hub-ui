@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Problem } from "../courses/service.dto";
 import "./Problem.css"
+import { Table } from "react-bootstrap";
 
 type Props = {
   problems: Problem[];
@@ -27,7 +28,7 @@ function ProblemRow({ problem, courseId }: RowProps) {
 export default function ProblemsList({ problems, courseId }: Props) {
   return (
     <div className="main-container">
-      <table>
+      <Table striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>#</th>
@@ -38,7 +39,7 @@ export default function ProblemsList({ problems, courseId }: Props) {
         <tbody>
           {problems.map(problem => <ProblemRow key={problem.id} problem={problem} courseId={courseId}/>)}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }

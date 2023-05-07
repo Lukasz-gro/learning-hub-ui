@@ -1,6 +1,5 @@
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { Theme } from "./About";
 
 type Props = {
