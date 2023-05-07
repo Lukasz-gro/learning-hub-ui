@@ -1,10 +1,12 @@
 import './CodeEditorStyles.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Editor from '@monaco-editor/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { ThemeIcon } from './ThemeIcon';
-import { runCode } from '../../services/learning-hub';
+import { queueCode } from '../../services/learning-hub';
+import { SubmitStatusContext } from '../../contexts/SubmitStatusContext';
+import useNotifications from '../../notifications/useNotifications';
 
 enum Language {
   CPP = "cpp",
@@ -33,12 +35,16 @@ export default function CodeEditorView() {
   const [codeSize, setCodeSize] = useState<CodeSize>(CodeSize.SMALL);
   const [theme, setTheme] = useState<Theme>(Theme.DARK);
   const [code, setCode] = useState<string | undefined>("");
-  const [codeResult, setCodeResult] = useState<string>();
+  const { notifyInformation } = useNotifications();
+  const submitStatusContext = useContext(SubmitStatusContext);
 
   const onSubmit = () => {
-    runCode(code || "", mapOfLanguages.get(language)!, 1, 2)
-      .then(setCodeResult)
-      .catch(() => setCodeResult('Error from server'))
+    queueCode(code, mapOfLanguages.get(language)!, 1, 1)
+      .then(response => {
+        notifyInformation(`Scheduled submit: ${response.id}`);
+        submitStatusContext.addStatusListener?.(response.id);
+      })
+      .catch(() => console.log("Error happened"))
   }
 
   return <div className="editor-container">
@@ -55,7 +61,6 @@ export default function CodeEditorView() {
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {codeSize}
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
           {Object.values(CodeSize).map(value => <Dropdown.Item key={value} onClick={() => setCodeSize(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
@@ -77,6 +82,5 @@ export default function CodeEditorView() {
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>
   </div>
-  { codeResult && <div>{codeResult}</div> }
 </div>;
 }

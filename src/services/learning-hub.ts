@@ -4,11 +4,21 @@ export async function healthCheck(): Promise<string> {
   return (await axios.get('/v1/health-check')).data as string;
 }
 
-export async function runCode(code: string, language: string, problemId: number, testCase: number): Promise<string> {
-  return (await axios.post('/v1/judge/run-code', {
+export interface Submit {
+  id: string;
+  code: string;
+  status: string;
+}
+
+export async function queueCode(code: string, language: string, problemId: number, testCase: number): Promise<Submit> {
+  return (await axios.post('/v1/judge/queue-code', {
     code,
     language,
     problemId,
     testCase
-  })).data as string;
+  })).data as Submit;
 }
+
+export async function checkSubmitStatus(id: string): Promise<Submit> {
+  return (await axios.get(`/v1/submit/${id}`)).data as Submit;
+} 

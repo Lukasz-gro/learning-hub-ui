@@ -3,7 +3,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { ThemeIcon } from './ThemeIcon';
-import { runCode } from '../../services/learning-hub';
 
 enum Language {
   CPP = "C++",
@@ -34,12 +33,6 @@ export default function About() {
   const [code, setCode] = useState<string>("Hello");
   const [codeResult, setCodeResult] = useState<string>();
 
-  const onSubmit = () => {
-    runCode(code, mapOfLanguages.get(language)!, 1, 2)
-      .then(setCodeResult)
-      .catch(err => setCodeResult('Error from server'))
-  }
-
   return <div className="editor-container">
     <div className="editor-options">
       <Dropdown>
@@ -63,7 +56,7 @@ export default function About() {
       <ThemeIcon setTheme={setTheme} currentTheme={theme} />
     </div>
   <div className="editor-actions">
-    <Button onClick={onSubmit} variant="outline-success">Submit</Button>
+    <Button onClick={()=>{}} variant="outline-success">Submit</Button>
   </div>
   { codeResult && <div>{codeResult}</div> }
 </div>;

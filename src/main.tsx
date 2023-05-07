@@ -6,6 +6,7 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query';
+import SubmitStatusProvider from './contexts/SubmitStatusContext';
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <QueryClientProvider client={queryClient}>
-    <App />
+    <SubmitStatusProvider>
+      <App />
+    </SubmitStatusProvider>
   </QueryClientProvider>
 );
