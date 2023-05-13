@@ -35,16 +35,17 @@ export default function CodeEditorView() {
   const submitStatusContext = useContext(SubmitStatusContext);
 
   useEffect(() => {
-    console.log("Submitid", submitId);
     const intervalTime = setInterval(() => {
       if (submitId !== "") {
         checkSubmitStatus(submitId)
-      .then(response => {
-        setStatus(response.status);
-        setSubmitId("");
-      })
-      .catch(() => console.log("Error while checking status"));
-      }
+          .then(response => {
+            setStatus(response.status);
+            if (response.status !== 'QUE') {
+              setSubmitId("");
+            }
+          })
+          .catch(() => console.log("Error while checking status"));
+          }
     }, 5000);
 
     return () => {
