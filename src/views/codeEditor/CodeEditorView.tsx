@@ -1,21 +1,18 @@
 import './CodeEditorStyles.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Editor from '@monaco-editor/react';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { ThemeIcon } from './ThemeIcon';
-import { runCode } from '../../services/learning-hub';
+import { checkSubmitStatus, queueCode } from '../../services/learning-hub';
+import { SubmitStatusContext } from '../../contexts/SubmitStatusContext';
+import useNotifications from '../../notifications/useNotifications';
+import { useEffect } from 'react';
 
 enum Language {
   CPP = "cpp",
   PYTHON = "python", 
   JAVA = "java"
-}
-
-enum CodeSize {
-  SMALL = "small",
-  MEDIUM = "medium", 
-  LARGE = "large"
 }
 
 export enum Theme {
@@ -30,15 +27,41 @@ const mapOfLanguages = new Map<Language, string>()
 
 export default function CodeEditorView() {
   const [language, setLanguage] = useState<Language>(Language.CPP);
-  const [codeSize, setCodeSize] = useState<CodeSize>(CodeSize.SMALL);
   const [theme, setTheme] = useState<Theme>(Theme.DARK);
   const [code, setCode] = useState<string | undefined>("");
-  const [codeResult, setCodeResult] = useState<string>();
+  const { notifyInformation } = useNotifications();
+  const [submitId, setSubmitId] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
+  const submitStatusContext = useContext(SubmitStatusContext);
+
+  useEffect(() => {
+    const intervalTime = setInterval(() => {
+      if (submitId !== "") {
+        checkSubmitStatus(submitId)
+          .then(response => {
+            setStatus(response.status);
+            if (response.status !== 'QUE') {
+              setSubmitId("");
+            }
+          })
+          .catch(() => console.log("Error while checking status"));
+          }
+    }, 5000);
+
+    return () => {
+      clearInterval(intervalTime);
+    }
+  }, [submitId]);
 
   const onSubmit = () => {
-    runCode(code || "", mapOfLanguages.get(language)!, 1, 2)
-      .then(setCodeResult)
-      .catch(() => setCodeResult('Error from server'))
+    queueCode(code, mapOfLanguages.get(language)!, 1, 1)
+      .then(response => {
+        notifyInformation(`Scheduled submit: ${response.id}`);
+        submitStatusContext.addStatusListener?.(response.id);
+        setSubmitId(response.id.toString());
+        setStatus(response.status);
+      })
+      .catch(() => console.log("Error happened"))
   }
 
   return <div className="editor-container">
@@ -51,15 +74,6 @@ export default function CodeEditorView() {
           {Object.values(Language).map(value => <Dropdown.Item key={value} onClick={() => setLanguage(value)}>{value}</Dropdown.Item>)}
         </Dropdown.Menu>
       </Dropdown>
-      {/* <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          {codeSize}
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          {Object.values(CodeSize).map(value => <Dropdown.Item key={value} onClick={() => setCodeSize(value)}>{value}</Dropdown.Item>)}
-        </Dropdown.Menu>
-      </Dropdown> */}
       <ThemeIcon setTheme={setTheme} currentTheme={theme} />
     </div>
     <div className="editor-field">
@@ -72,11 +86,10 @@ export default function CodeEditorView() {
         onChange={setCode}/>
     </div>
     <div className="compile-info">
-      Result
+      { status || "Result" }
     </div>
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>
   </div>
-  { codeResult && <div>{codeResult}</div> }
 </div>;
 }

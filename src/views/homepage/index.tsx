@@ -6,11 +6,9 @@ export async function healthChecks(): Promise<string> {
   }
 
 export default function Homepage() {
-    const [serverResponse, setServerResponse] = useState<string>('No request made')
-
-    const talkWithServer = () => {
-        healthChecks().then(setServerResponse).catch(console.log);
-    };
-    
-    return <button onClick={talkWithServer}>Health check</button>;
+    return (
+        <div>
+            Homepage of the best learning website in the world
+        </div>
+    );
 }

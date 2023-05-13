@@ -73,8 +73,8 @@
 
 .profiles-nav-info {
     position: absolute;
-    top: 5%;
-    left: 300%;
+    top: 0%;
+    left: 240%;
     height: 50px;
     width: 200px;
 }
