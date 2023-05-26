@@ -2,12 +2,15 @@ import { useParams } from "react-router-dom";
 import CodeEditorView from "../codeEditor/CodeEditorView";
 import ProblemDescription from "./ProblemDescription";
 import useProblem from "./useProblem";
+import ProblemNavigation from "./ProblemNavigation";
 import { Spinner, Alert } from "react-bootstrap";
 import "./Problem.css"
+import { useState } from "react";
 
 export default function Problem() {
   const { problemId } = useParams();
   const { isLoading, isError, data } = useProblem(problemId || "-1");
+  const [currentOption, setCurrentOption] = useState<number>(0);
 
   if (isLoading) {
     return (
@@ -28,6 +31,7 @@ export default function Problem() {
 
   return (
     <div className="problem-container">
+      <ProblemNavigation />
       <ProblemDescription description={data.description}/>
       <CodeEditorView />
     </div>

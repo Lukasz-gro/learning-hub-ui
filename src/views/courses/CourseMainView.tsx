@@ -25,6 +25,11 @@ export default function CourseMainView() {
   }
   
   return (
-    <ProblemsList problems={data || []} courseId={courseId || "0"}/>
+    <> <div className="course-container"> 
+        <div className="course-name">Algosy</div> 
+        <div className="course-description"> </div> 
+        <ProblemsList problems={data || []} courseId={courseId || "0"}/>
+    </div>
+    </>
    )
 }
