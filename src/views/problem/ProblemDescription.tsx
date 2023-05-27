@@ -1,3 +1,5 @@
+import QuestionForBotLabel from "../chatBot/QuestionForBotLabel";
+
 type Props = {
   description: string;
 }
@@ -19,6 +21,7 @@ export default function ProblemDescription({ description }: Props) {
         <span style={{ fontWeight: "bold" }}>Example 2</span><br/><span style={{ fontWeight: "bold" }}>Input:</span> 3 1 8 2 9 5 7 6 4<br/>
         <span style={{ fontWeight: "bold" }}>Output:</span> 1 2 3 4 5 6 7 8 9
       </div>
+      {/* <QuestionForBotLabel/> */}
     </div>
   )
 }
