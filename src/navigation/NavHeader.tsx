@@ -2,6 +2,7 @@ import Nav from 'react-bootstrap/Nav';
 import "./NavStyle.css"
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+
 export default function NavHeader() {
   function notNull(course_link:any, about_link:any, home_link:any){
     if(course_link != null && about_link != null && home_link != null){
@@ -33,10 +34,12 @@ export default function NavHeader() {
       about_link.style.color = "#f6f4e6"; 
     }
   }
+
   const location = useLocation();
-  useEffect(() => {
-    check();
+    useEffect(() => {
+      check();
   }, [location]);
+
   return (
     <nav className="navMenu">
       <Link id="home-nav" to="/">Home</Link>
