@@ -17,9 +17,9 @@ function ProblemRow({ problem, courseId }: RowProps) {
   const navigate = useNavigate();
   
   return (
-    <tr onClick={() => navigate(`/code/${courseId}/${problem.id}`)}>
+    <tr>
       <td>{problem.id}</td>
-      <td>{problem.name}</td>
+      <td onClick={() => navigate(`/code/${courseId}/${problem.id}`)}>{problem.name}</td>
       <td>To do</td>
     </tr>
   );
@@ -28,18 +28,14 @@ function ProblemRow({ problem, courseId }: RowProps) {
 export default function ProblemsList({ problems, courseId }: Props) {
   return (
     <div className="main-container">
-      <Table striped bordered hover variant="dark">
-        <thead>
+     <table className="table-container">
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Status</th>
           </tr>
-        </thead>
-        <tbody>
           {problems.map(problem => <ProblemRow key={problem.id} problem={problem} courseId={courseId}/>)}
-        </tbody>
-      </Table>
+      </table>
     </div>
   );
 }
