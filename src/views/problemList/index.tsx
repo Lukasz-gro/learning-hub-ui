@@ -27,7 +27,6 @@ function ProblemRow({ problem, courseId }: RowProps) {
 
 export default function ProblemsList({ problems, courseId }: Props) {
   return (
-    
     <div className="main-container">
      <table className="table-container">
           <tr>

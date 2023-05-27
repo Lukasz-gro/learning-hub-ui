@@ -26,8 +26,10 @@ export default function CourseMainView() {
   
   return (
     <> <div className="course-container"> 
-        <div className="course-name">Algosy</div> 
-        <div className="course-description"> </div> 
+        <div className="course-description">
+        <h2>Algorithm</h2> 
+        In this course, you will look at the core data structures and algorithms that are the building blocks of applications everywhere. You will learn how they work and see real-world examples that you can apply to your next project.
+        </div> 
         <ProblemsList problems={data || []} courseId={courseId || "0"}/>
     </div>
     </>
