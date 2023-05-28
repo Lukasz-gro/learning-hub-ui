@@ -1,9 +1,12 @@
 import Nav from 'react-bootstrap/Nav';
 import "./NavStyle.css"
 import { Link, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { UserContext } from '../contexts/UserContext';
 
 export default function NavHeader() {
+  const userContext = useContext(UserContext);
+
   function notNull(course_link:any, about_link:any, home_link:any){
     if(course_link != null && about_link != null && home_link != null){
       return true;
@@ -47,8 +50,11 @@ export default function NavHeader() {
       <Link id="about-nav" to="/about">About</Link>
       <div className="dot"></div>
       <div className="profiles-nav-info">
-        <Link to="#">Log in</Link>
-        <Link to="#">Sign up</Link>
+        {userContext.isLogged? <><Link to="#" onClick={() => { console.log("Logout"); userContext.logoutUser()}}>Logout</Link></>: <>
+            <Link to="/login">Log in</Link>
+            <Link to="/register">Sign up</Link>
+          </>
+        }
       </div>
     </nav>
   )
