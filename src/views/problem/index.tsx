@@ -7,6 +7,7 @@ import "./Problem.css"
 import { useState } from "react";
 import PageNavigation from "../../navigation/PageNavigation";
 import { faArrowLeft, faBell, faClockRotateLeft, faComments, faFileLines } from "@fortawesome/free-solid-svg-icons"
+import ChatWindow from "../chatBot/ChatWindow";
 
 const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faArrowLeft];
 
@@ -38,7 +39,8 @@ export default function Problem() {
         selected={selectedOption} 
         icons={navigationIcons}
         onPositionClick={setSelectedOption}/>
-      <ProblemDescription description={data.description}/>
+      {/* <ProblemDescription description={data.description}/> */}
+      <ChatWindow/>
       <CodeEditorView />
     </div>
   )

@@ -1,0 +1,47 @@
+.Chat-bot-content {
+    width: 90%;
+    /* background-color: blue; */
+    margin-top:3%;
+    text-align: left; 
+    margin-left: 5%;
+}
+
+.problem-description{
+    font-size: 20px;
+    position: relative;
+    left: 1%;
+    width: 45%;
+    background-color: #1E1E1E;
+    border-radius: 10px;
+    float:left;
+    overflow-y: scroll;
+}
+
+.problem-description::-webkit-scrollbar {
+    width: 1em;
+}
+   
+.problem-description::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.problem-description::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+.bot-answer {
+    width: 100%;
+    padding: 20px;
+    margin-left:-20px;
+    margin-top:20px;
+    text-align: left;
+    border-bottom: 1px solid #454545;
+}
+.user-question {
+    width: 100%;
+    padding: 20px;
+    margin-left:-20px;
+    margin-top:20px;
+    text-align: right;
+    border-bottom: 1px solid #454545;
+}
