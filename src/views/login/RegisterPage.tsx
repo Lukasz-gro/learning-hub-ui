@@ -3,6 +3,8 @@ import "./LoginPage.css";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate } from "react-router-dom";
 import { Alert, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons"
 
 type UserData = {
   login: string;
@@ -35,6 +37,8 @@ export default function RegisterPage() {
     <>
     {error && <Alert variant='danger'>Error while trying to log in. Please try again</Alert>}
       <div className="login-container">
+      <div className="user-font"><FontAwesomeIcon icon={faUser} size="xl" /></div>
+        Sign up<br/>
         <label >
           <input 
             value={userData.login} 
