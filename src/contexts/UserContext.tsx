@@ -1,5 +1,5 @@
-import { FC, ReactNode, createContext, useState } from "react";
-import { JwtToken, registerUser, loginUser } from "./user-service";
+import { FC, ReactNode, createContext, useEffect, useState } from "react";
+import { registerUser, loginUser } from "./user-service";
 import axios from "axios";
 
 type PropsWithChildren<P = unknown> = P & { children?: ReactNode | undefined };
@@ -10,6 +10,12 @@ type User = {
   registerUser: (login: string, password: string, email: string) => Promise<boolean>;
   loginUser: (login: string, password: string) => Promise<boolean>;
   logoutUser: () => void;
+}
+
+type UserData = {
+  isLogged: boolean;
+  token: string;
+  login: string;
 }
 
 export const UserContext = createContext<User>({ isLogged: false, 
@@ -23,12 +29,22 @@ const UserProvider: FC<PropsWithChildren<any>> = ({ children }) => {
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [login, setLogin] = useState<string>("");
 
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('userData') || '{}') as UserData;
+    if (userData.isLogged) {
+      setIsLogged(true);
+      setLogin(userData.login);
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userData.token}`;
+    }
+  }, []);
+
   const signUpUser = (login: string, password: string, email: string) => {
     return registerUser(login, password, email)
       .then(res => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.token}`;
         setIsLogged(true);
         setLogin(login);
+        localStorage.setItem('userData', JSON.stringify({ isLogged: true, login, token: res.token }));
         return true;
       })
       .catch(() => false);
@@ -40,14 +56,16 @@ const UserProvider: FC<PropsWithChildren<any>> = ({ children }) => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${res.token}`;
         setIsLogged(true);
         setLogin(login);
+        localStorage.setItem('userData', JSON.stringify({ isLogged: true, login, token: res.token }));
         return true;
       })
       .catch(() => false);
   };
 
   const logoutUser = () => {
-    axios.defaults.headers.common['Authorization'] = 'Bearer invalid token';
+    axios.defaults.headers.common['Authorization'] = null;
     setIsLogged(false);
+    localStorage.setItem('userData', JSON.stringify({ isLogged: false, login: '', token: '' }));
   };
 
   return (

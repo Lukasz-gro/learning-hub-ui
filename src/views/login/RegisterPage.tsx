@@ -13,7 +13,7 @@ type UserData = {
 export default function RegisterPage() {
   const userContext = useContext(UserContext);
   const [error, setError] = useState<boolean>(false);
-  const [userData, setUserData] = useState<UserData>({ login: "", password: "", email: "string" });
+  const [userData, setUserData] = useState<UserData>({ login: "", password: "", email: "" });
   const navigate = useNavigate();
   
   const register = () => {
@@ -54,7 +54,7 @@ export default function RegisterPage() {
             placeholder="e-mail"
             onChange={e => setUserData({ ...userData, email: e.target.value })} />
         </label>
-        <button onClick={register} className="submitButton">Log in</button>
+        <button onClick={register} className="submitButton">Register</button>
       </div>
     </>
   );
