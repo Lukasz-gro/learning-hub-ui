@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import CodeEditorView from "../codeEditor/CodeEditorView";
 import ProblemDescription from "./ProblemDescription";
 import useProblem from "./useProblem";
@@ -15,7 +15,8 @@ export default function Problem() {
   const { problemId } = useParams();
   const { isLoading, isError, data } = useProblem(problemId || "-1");
   const [selectedOption, setSelectedOption] = useState<number>(0);
-
+  const navigate = useNavigate();
+  
   if (isLoading) {
     return (
       <div>
@@ -33,14 +34,26 @@ export default function Problem() {
     )
   }
 
+  const navigationOption = [<ProblemDescription description={data.description}/>, 
+    <ProblemDescription description={data.description}/>,
+    <ChatWindow />,
+    <ChatWindow />];
+
+  const onPositionClick = (position: number) => {
+    setSelectedOption(position);
+
+    if (position === navigationIcons.length - 1) {
+      navigate(-1);
+    }
+  };
+
   return (
     <div className="problem-container">
       <PageNavigation 
         selected={selectedOption} 
         icons={navigationIcons}
-        onPositionClick={setSelectedOption}/>
-      {/* <ProblemDescription description={data.description}/> */}
-      <ChatWindow/>
+        onPositionClick={onPositionClick}/>
+      {navigationOption[selectedOption]}
       <CodeEditorView />
     </div>
   )
