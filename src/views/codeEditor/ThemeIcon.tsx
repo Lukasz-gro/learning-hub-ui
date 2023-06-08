@@ -1,6 +1,6 @@
 import { faMoon, faSun } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Theme } from "./CodeEditorView";
+import { Theme } from "./useCodeEditor";
 
 type Props = {
     currentTheme: Theme

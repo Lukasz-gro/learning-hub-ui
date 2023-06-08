@@ -10,6 +10,8 @@ import PageNavigation from "../../navigation/PageNavigation";
 import { faArrowLeft, faBell, faClockRotateLeft, faComments, faFileLines } from "@fortawesome/free-solid-svg-icons"
 import ChatWindow from "../chatBot/ChatWindow";
 import SubmitsHistory from "./SubmitsHistory";
+import useCodeEditor from "../codeEditor/useCodeEditor";
+import useProblemStatus from "./useProblemStatus";
 
 const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faArrowLeft];
 
@@ -17,6 +19,9 @@ export default function Problem() {
   const { problemId } = useParams();
   const { isLoading, isError, data } = useProblem(problemId || "-1");
   const [selectedOption, setSelectedOption] = useState<number>(0);
+  const codeEditor = useCodeEditor();
+  const problemStatus = useProblemStatus();
+
   const navigate = useNavigate();
   
   if (isLoading) {
@@ -35,18 +40,22 @@ export default function Problem() {
       </div>
     )
   }
+  
+  const createMessage = (option: string) => {
+    return `This is problem statement: ${data.description}. This is my code: ${codeEditor.code}. ${option}`;
+  };
 
-  const navigationOption = [<ProblemDescription description={data.description}/>, 
-    <ProblemDescription description={data.description}/>,
-    <ChatWindow />,
+  const navigationOption = [<ProblemDescription description={data.description} />, 
+    <ProblemDescription description={data.description} />,
+    <ChatWindow userId="a" problemId={problemId || "-1"} createMessage={createMessage}/>,
     <SubmitsHistory />];
 
   const onPositionClick = (position: number) => {
-    setSelectedOption(position);
-
     if (position === navigationIcons.length - 1) {
       navigate(-1);
+      return;
     }
+    setSelectedOption(position);
   };
 
   return (
@@ -56,7 +65,7 @@ export default function Problem() {
         icons={navigationIcons}
         onPositionClick={onPositionClick}/>
       {navigationOption[selectedOption]}
-      <CodeEditorView />
+      <CodeEditorView { ...codeEditor } { ...problemStatus }/>
     </div>
   )
 }

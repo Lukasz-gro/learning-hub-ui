@@ -7,68 +7,54 @@ import { ThemeIcon } from './ThemeIcon';
 import { checkSubmitStatus, queueCode } from '../../services/learning-hub';
 import { SubmitStatusContext } from '../../contexts/SubmitStatusContext';
 import useNotifications from '../../notifications/useNotifications';
-import { useEffect } from 'react';
 import CompilerResults from './CompilerResults';
 import TestsArea from './TestsArea';
+import { Language, Theme, mapOfLanguages } from './useCodeEditor';
 
-enum Language {
-  CPP = "cpp",
-  PYTHON = "python", 
-  JAVA = "java"
+type Props = {
+  code: string | undefined;
+  setCode: (newCode: string | undefined) => void;
+  language: Language;
+  setLanguage: (newLanguage: Language) => void;
+  theme: Theme;
+  setTheme: (newTheme: Theme) => void;
+  status: string;
+  setStatus: (newStatus: string) => void;
+  listenStatusChange: (submitId: string) => void;
 }
 
-export enum Theme {
-  LIGHT = "light",
-  DARK = "vs-dark"
-}
-
-const mapOfLanguages = new Map<Language, string>()
-    .set(Language.CPP, "cpp")
-    .set(Language.JAVA, "java")
-    .set(Language.PYTHON, "python");
-
-export default function CodeEditorView() {
-  const [language, setLanguage] = useState<Language>(Language.CPP);
-  const [theme, setTheme] = useState<Theme>(Theme.DARK);
-  const [code, setCode] = useState<string | undefined>("");
+export default function CodeEditorView({
+  code,
+  setCode,
+  language,
+  setLanguage,
+  theme,
+  setTheme,
+  status,
+  setStatus,
+  listenStatusChange
+}: Props) {
   const { notifyInformation } = useNotifications();
-  const [submitId, setSubmitId] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
   const [selectedOption, setSelectedOption] = useState<number>(0);
+  const [lastClicked, setLastClicked] = useState<Date>(() => new Date());
   const submitStatusContext = useContext(SubmitStatusContext);
- 
-
-  useEffect(() => {
-    const intervalTime = setInterval(() => {
-      if (submitId !== "") {
-        checkSubmitStatus(submitId)
-          .then(response => {
-            setStatus(response.status);
-            if (response.status !== 'QUE') {
-              setSubmitId("");
-            }
-          })
-          .catch(() => console.log("Error while checking status"));
-          }
-    }, 5000);
-
-    return () => {
-      clearInterval(intervalTime);
-    }
-  }, [submitId]);
 
   const onSubmit = () => {
+    if((new Date().getTime() - lastClicked.getTime()) / 1000 < 10) {
+      return;
+    }
+    setLastClicked(new Date());
     queueCode(code, mapOfLanguages.get(language)!, 1, 1)
       .then(response => {
         notifyInformation(`Scheduled submit: ${response.id}`);
         submitStatusContext.addStatusListener?.(response.id);
-        setSubmitId(response.id.toString());
+        listenStatusChange(response.id.toString());
         setStatus(response.status);
       })
       .catch(() => console.log("Error happened"))
   }
 
-  const options = [<CompilerResults status={status} key={0}/>, <TestsArea status={"lipka"} key={"1"} />];
+  const options = [<CompilerResults status={status} key={status}/>, <TestsArea status={"lipka"} key={"1"} />];
   return <div className="editor-container">
         <div className="editor-options">
       <Dropdown>
