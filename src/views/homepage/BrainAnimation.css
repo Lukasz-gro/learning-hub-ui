@@ -1,0 +1,46 @@
+
+.st0 {
+  fill:none;
+  stroke:#188abb;
+  stroke-width:0.25;
+  stroke-miterlimit:10;
+  stroke-dasharray:3,2;
+}
+
+.name{
+  font-size: 40px; 
+}
+
+.brain-animation-svg-pack > svg {
+  margin-top: 40px;
+  scale: 1.6;
+  enable-background:new 0 0 300 300;
+  max-width: 90%;
+  max-height: 50%;
+  position: relative; 
+}
+
+svg path{
+  stroke: #ffff;
+  stroke-width: 10;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 80;
+  animation-name: draw;
+  animation-duration: 40s;
+  animation-iteration-count: 100;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+}
+
+@keyframes draw {
+  25% {
+    stroke-dashoffset: 0;
+    stroke-width: 1;
+    fill-opacity: 10;
+  }
+  50% {
+    stroke-width: 1;
+    fill-opacity: 1;
+  }
+}
+
