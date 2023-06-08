@@ -4,10 +4,12 @@ import ProblemDescription from "./ProblemDescription";
 import useProblem from "./useProblem";
 import { Spinner, Alert } from "react-bootstrap";
 import "./Problem.css"
+import "./SubmitsHistory.css"
 import { useState } from "react";
 import PageNavigation from "../../navigation/PageNavigation";
 import { faArrowLeft, faBell, faClockRotateLeft, faComments, faFileLines } from "@fortawesome/free-solid-svg-icons"
 import ChatWindow from "../chatBot/ChatWindow";
+import SubmitsHistory from "./SubmitsHistory";
 
 const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faArrowLeft];
 
@@ -37,7 +39,7 @@ export default function Problem() {
   const navigationOption = [<ProblemDescription description={data.description}/>, 
     <ProblemDescription description={data.description}/>,
     <ChatWindow />,
-    <ChatWindow />];
+    <SubmitsHistory />];
 
   const onPositionClick = (position: number) => {
     setSelectedOption(position);

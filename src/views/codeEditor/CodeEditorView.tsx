@@ -8,6 +8,8 @@ import { checkSubmitStatus, queueCode } from '../../services/learning-hub';
 import { SubmitStatusContext } from '../../contexts/SubmitStatusContext';
 import useNotifications from '../../notifications/useNotifications';
 import { useEffect } from 'react';
+import CompilerResults from './CompilerResults';
+import TestsArea from './TestsArea';
 
 enum Language {
   CPP = "cpp",
@@ -32,7 +34,9 @@ export default function CodeEditorView() {
   const { notifyInformation } = useNotifications();
   const [submitId, setSubmitId] = useState<string>("");
   const [status, setStatus] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<number>(0);
   const submitStatusContext = useContext(SubmitStatusContext);
+ 
 
   useEffect(() => {
     const intervalTime = setInterval(() => {
@@ -64,6 +68,7 @@ export default function CodeEditorView() {
       .catch(() => console.log("Error happened"))
   }
 
+  const options = [<CompilerResults status={status} key={0}/>, <TestsArea status={"lipka"} key={"1"} />];
   return <div className="editor-container">
         <div className="editor-options">
       <Dropdown>
@@ -85,8 +90,12 @@ export default function CodeEditorView() {
         theme={theme}
         onChange={setCode}/>
     </div>
-    <div className="compile-info">
-      { status || "Result" }
+    <div className="user-info">
+      <div className = "buttons-nav">
+        <button onClick={() => setSelectedOption(0)} className="user-view-button">Results</button>
+        <button onClick={() => setSelectedOption(1)} className="user-view-button">Tests</button>
+      </div>
+      {options[selectedOption]}
     </div>
   <div className="editor-actions">
     <Button onClick={onSubmit} variant="outline-success">Submit</Button>

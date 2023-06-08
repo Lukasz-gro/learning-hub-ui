@@ -3,6 +3,7 @@
     --current-dot-position: 30px;
   }
 .navMenu {
+  z-index: 3;
   position: absolute;
   top: 5%;
   left: 50%;

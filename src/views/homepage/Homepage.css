@@ -1,0 +1,34 @@
+.homepage-container {
+    margin-top: 100px;
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brain-animation {
+    z-index: 2;
+    width: 600px;
+    height: 600px;
+    float: left;
+}
+
+.website-desription {
+    z-index: 2;
+    font-family: 'Raleway', sans-serif;
+    width: 700px;
+    height: 600px;
+    float: left;
+    margin-left: 40px;
+    font-size: 24px;
+    text-align: left;
+    color: #c2bdbd;
+}
+.website-desription > a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.website-desription > a:hover { 
+    color: #188abb;
+}
