@@ -17,9 +17,10 @@
 }
 .course-description {
   width: 80%;
-  height: 20vh;
+  height: fit-content;
   padding: 20px;
   padding-top: 5vh;
+  padding-bottom: 5vh;
   text-align: left;
   font-size: 23px;
   padding-left: 50px;

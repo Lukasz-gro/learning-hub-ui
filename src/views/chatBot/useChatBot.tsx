@@ -10,7 +10,7 @@ async function chatBot(message: string): Promise<any> {
     max_tokens: 256
   }, {
     headers: {
-      'Authorization': 'Bearer ADD_YOUR_API_TOKEN',
+      'Authorization': 'Bearer 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',
       'Content-Type': 'application/json'
     }
   })).data as any;
@@ -21,10 +21,11 @@ export default function useChatBot(userId: string, problemId: string) {
   
   const askQuestion = (message: string, prompt: string) => {
     saveMessage({ message, isUser: true });
-    chatBot(message)
+    chatBot(prompt)
       .then(response => {
-        console.log(response.content);
-        saveMessage({ message: response.content, isUser: false });
+        console.log(response);
+        console.log(response.choices[0].message.content);
+        saveMessage({ message: response.choices[0].message.content, isUser: false });
       })
       .catch(console.log);
   };
