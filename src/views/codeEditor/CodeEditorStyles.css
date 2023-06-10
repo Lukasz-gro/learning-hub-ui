@@ -12,13 +12,22 @@
   height: 50px;
   background-color:#2e2e2e;
   margin-top: 0px;
-  width: 101%;
+  width: 100%;
   border-radius: 5px;
   border-bottom: 2px solid #454545;
 }
 
 .editor-options.editor-options> div > button {
   background-color: #2e2e2e;
+}
+
+.editor-options.editor-options > div > div > a:hover {
+  width: 80%;
+}
+
+.editor-options.editor-options > div > div > a:active {
+  background-color: #fff;
+  color: #7a7a7a;
 }
 
 .editor-options > div > button{
@@ -59,12 +68,13 @@
   border-top: 2px solid #454545;
   border-bottom: 2px solid #454545;
   margin-top: 1px;
-  height: 18vh;
+  height: 19.5vh;
   font-size: 15px;
   border-radius: 5px;
 }
 .buttons-nav {
-  width: 100%;
+  width: 99.5%;
+  border-radius: 4px;
   display: flex;
   border-bottom: solid 1px #454545;
   padding: 1px;
@@ -93,7 +103,7 @@
 .compiler-result > textarea {
   margin-top: 10px;
   width: 97%;
-  height: 92%;
+  height: 84%;
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
@@ -176,18 +186,16 @@ outline: 1px solid slategrey;
 
 .editor-actions {
   display: flex;
-  align-items: center;
+  align-items:end;
   width: 102%;
   margin-top: 1px;
   margin-left: 0px;
   height: 6vh;
   font-size: 15px;
-  position: relative;
-  padding: 10px;
 }
 
 .editor-actions > button {
-  position: relative;
   margin-left: auto;
+  margin-right: 20px;
 }
 

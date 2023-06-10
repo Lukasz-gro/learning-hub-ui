@@ -34,7 +34,7 @@
     position: relative;
     left: 1%;
     width: 45%;
-    height: 74vh;
+    height: 75vh;
     background-color: #1E1E1E;
     border-radius: 10px;
     float:left;
@@ -57,7 +57,7 @@
 
 .problem-content {
     width: 90%;
-    height: 500px;
+    height: 40vh;
     /* background-color: blue; */
     margin-top:10%;
     text-align: left; 

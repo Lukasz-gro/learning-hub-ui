@@ -8,6 +8,7 @@ export interface Submit {
   id: string;
   code: string;
   status: string;
+  errorMessage: string;
 }
 
 export async function queueCode(code: string | undefined, language: string, problemId: number, testCase: number): Promise<Submit> {
@@ -20,5 +21,5 @@ export async function queueCode(code: string | undefined, language: string, prob
 }
 
 export async function checkSubmitStatus(id: string): Promise<Submit> {
-  return (await axios.get(`/v1/submit/${id}`)).data as Submit;
+  return (await axios.get(`/v1/auth/submit/${id}`)).data as Submit;
 } 

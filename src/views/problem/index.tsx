@@ -5,6 +5,7 @@ import useProblem from "./useProblem";
 import { Spinner, Alert } from "react-bootstrap";
 import "./Problem.css"
 import "./SubmitsHistory.css"
+import "./HistorySolution.css"
 import { useContext, useState } from "react";
 import PageNavigation from "../../navigation/PageNavigation";
 import { faArrowLeft, faBell, faClockRotateLeft, faComments, faFileLines } from "@fortawesome/free-solid-svg-icons"
@@ -13,6 +14,7 @@ import SubmitsHistory from "./SubmitsHistory";
 import useCodeEditor from "../codeEditor/useCodeEditor";
 import useProblemStatus from "./useProblemStatus";
 import { UserContext } from "../../contexts/UserContext";
+import HistorySolution from "./HistorySolution";
 
 const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faArrowLeft];
 
@@ -20,6 +22,7 @@ export default function Problem() {
   const { problemId } = useParams();
   const { isLoading, isError, data } = useProblem(problemId || "-1");
   const [selectedOption, setSelectedOption] = useState<number>(0);
+  const [selectedType, setSelectedType] = useState<number>(0);
   const codeEditor = useCodeEditor();
   const problemStatus = useProblemStatus();
   const userContext = useContext(UserContext);
@@ -60,10 +63,17 @@ export default function Problem() {
     <ChatWindow userId={userContext.login} problemId={problemId || "-1"} createMessage={createMessage}/>,
     <SubmitsHistory />];
 
+  const codeEditorType = [<CodeEditorView { ...codeEditor } { ...problemStatus }/>, <HistorySolution { ...codeEditor } { ...problemStatus }/>];
+
   const onPositionClick = (position: number) => {
     if (position === navigationIcons.length - 1) {
-      navigate(-1);
+      navigate(-1)
+      setSelectedOption(1);
       return;
+    } else if (position === 3) {
+      setSelectedType(1);
+    } else {
+      setSelectedType(0);
     }
     setSelectedOption(position);
   };
@@ -75,7 +85,7 @@ export default function Problem() {
         icons={navigationIcons}
         onPositionClick={onPositionClick}/>
       {navigationOption[selectedOption]}
-      <CodeEditorView { ...codeEditor } { ...problemStatus }/>
+      {codeEditorType[selectedType]}
     </div>
   )
 }

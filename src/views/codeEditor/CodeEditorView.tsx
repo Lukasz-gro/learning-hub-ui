@@ -49,6 +49,7 @@ export default function CodeEditorView({
         notifyInformation(`Scheduled submit: ${response.id}`);
         submitStatusContext.addStatusListener?.(response.id);
         listenStatusChange(response.id.toString());
+        console.log("LECE: ", response.status);
         setStatus(response.status);
       })
       .catch(() => console.log("Error happened"))

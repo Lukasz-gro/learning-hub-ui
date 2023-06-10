@@ -10,8 +10,9 @@ export default function useProblemStatus() {
       if (submitId !== "") {
         checkSubmitStatus(submitId)
           .then(response => {
-            setStatus(response.status);
+            setStatus(response.errorMessage);
             if (response.status !== 'QUE') {
+              console.log("JAZDA2");
               setSubmitId("");
             }
           })
