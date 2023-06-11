@@ -21,7 +21,7 @@ const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faA
 
 export default function Problem() {
   const { problemId } = useParams();
-  const { isLoading, isError, data } = useProblem(problemId || "-1");
+  const { isLoading, isError, data: problem } = useProblem(problemId || "-1");
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [selectedType, setSelectedType] = useState<number>(0);
   const codeEditor = useCodeEditor();
@@ -48,15 +48,15 @@ export default function Problem() {
     )
   }
   
-  const description = data.description;
+  const description = problem.description;
 
-  const createMessage = (option: string) => {
-    return `This is problem statement: ${description}. This is my code: ${codeEditor.code}. ${option}`;
-  };
-
-  const navigationOption = [<ProblemDescription description={data.description} />, 
-    <ProblemDescription description={data.description} />,
-    <ChatWindow userId={userContext.login} problemId={problemId || "-1"} createMessage={createMessage}/>,
+  const navigationOption = [<ProblemDescription description={problem.description} />, 
+    <ProblemDescription description={problem.description} />,
+    <ChatWindow 
+      userId={userContext.login} 
+      problemId={problemId || "-1"} 
+      code={codeEditor.code} 
+      problem={problem}/>,
     <SubmitsHistory userId={userContext.login} problemId={problemId || "-1"} setSelectedSubmit={submitHistory.setSelectedSubmit} />];
 
   const codeEditorType = [<CodeEditorView userLogin={userContext.login} { ...codeEditor } { ...problemStatus }/>, <HistorySolution { ...codeEditor } { ...problemStatus } submit={submitHistory.selectedSubmit}/>];

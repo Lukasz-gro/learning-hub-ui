@@ -8,7 +8,7 @@ export interface ChatBotData {
   code?: string;
 }
 
-export function hintWithCode({ description, code } :ChatBotData): ChatBotMessage {
+export function hintWithCode({ description, code }: ChatBotData): ChatBotMessage {
   return {
     message: 'My code doesn\t work and I don\'t know why. Could you help me?',
     prompt: `This is problem statement: ${description}. 
@@ -17,7 +17,7 @@ export function hintWithCode({ description, code } :ChatBotData): ChatBotMessage
   }; 
 }
 
-export function findMistakeInCode({ description, code } :ChatBotData): ChatBotMessage {
+export function findMistakeInCode({ description, code }: ChatBotData): ChatBotMessage {
   return {
     message: 'I can\'t find mistake in my code. Can you explain me what is wrong here?',
     prompt: `This is problem statement: ${description}. 
@@ -26,7 +26,7 @@ export function findMistakeInCode({ description, code } :ChatBotData): ChatBotMe
   }
 }
 
-export function paraphraseDescription({ description, code } :ChatBotData): ChatBotMessage {
+export function paraphraseDescription({ description, code }: ChatBotData): ChatBotMessage {
   return {
     message: 'I don\'t understand the problem. Could you explain it to me differently?',
     prompt: `This is problem statement: ${description}. 
@@ -34,7 +34,7 @@ export function paraphraseDescription({ description, code } :ChatBotData): ChatB
   }
 }
 
-export function hintForProblem({ description, code } :ChatBotData): ChatBotMessage {
+export function hintForProblem({ description, code }: ChatBotData): ChatBotMessage {
   return {
     message: 'I don\'t know how to start. Can you tell me how should I begin?',
     prompt: `This is problem statement: ${description}. 
