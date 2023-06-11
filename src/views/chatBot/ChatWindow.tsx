@@ -1,22 +1,26 @@
 import QuestionForBotLabel from "./QuestionsForChatBotLabel";
 import './ChatWindow.css';
 import useChatBot from "./useChatBot";
+import { Problem } from "../courses/service.dto";
+import { ChatBotData } from "./MessageCreator";
 
 type Props = {
     userId: string;
     problemId: string;
-    createMessage: (option: string) => string;
+    problem?: Problem;
+    code?: string;
 }
 
 export default function ChatWindow({
     userId,
     problemId,
-    createMessage
+    problem,
+    code
 }: Props) {
     const { chatHistory, askQuestion } = useChatBot(userId, problemId);
 
-    const questionOption = (question: string, prompt: string) => {
-        askQuestion(question, createMessage(prompt));
+    const questionOption = (message: string, prompt: string) => {
+        askQuestion(message, prompt);
     };
     
     const selectClassName = (isUser: boolean) => {
@@ -39,7 +43,7 @@ export default function ChatWindow({
                 </div>))
                 } 
             </div>
-            <QuestionForBotLabel askQuestion={questionOption}/>
+            <QuestionForBotLabel askQuestion={questionOption} code={code} problem={problem}/>
         </div>
     )
 }

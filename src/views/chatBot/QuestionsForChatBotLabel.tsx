@@ -1,33 +1,40 @@
+import { Problem } from '../courses/service.dto';
 import './Label.css';
+import { findMistakeInCode, hintWithCode, paraphraseDescription } from './MessageCreator';
 
 type Props = {
     askQuestion: (option: string, message: string) => void;
+    problem?: Problem;
+    code?: string;
 }
 
 export default function QuestionForBotLabel({
-    askQuestion
+    askQuestion,
+    problem,
+    code
 }: Props) {
 
-    const question = () => {
-        askQuestion(
-            "I have a problem and don't know what to do. Could you help me?",
-            "I don't know where the mistake is. Could you give me a hint. Don't explain in detail and don't write code."
-        )
+    const askForHint = () => {
+        const { message, prompt } = hintWithCode({ code, description: problem?.description });
+        askQuestion(message, prompt);
     };
 
-    const question2 = () => {
-        askQuestion(
-            "I'm stuck. Could tell me where the mistake is?",
-            "I don't know where the mistake is. Could you explain why it doesn't work, but don't write code."
-        )
+    const askCodeError = () => {
+        const { message, prompt } = findMistakeInCode({ code, description: problem?.description });
+        askQuestion(message, prompt);
     };
 
+    const askDescription = () => {
+        const { message, prompt } = paraphraseDescription({ code, description: problem?.description });
+        askQuestion(message, prompt);
+    }
+    
     return(
         <div className="box-container">
             <div className="question-list">
-                <div className="question" onClick={question}>Give me a hint!</div>
-                <div className="question" onClick={question2}>Where is a mistake?</div>
-                <div className="question">Explain me the exercise!</div>
+                <div className="question" onClick={askForHint}>Give me a hint!</div>
+                <div className="question" onClick={askCodeError}>Where is a mistake?</div>
+                <div className="question" onClick={askDescription}>Explain me the exercise!</div>
             </div>
         </div>
     )

@@ -6,11 +6,11 @@ async function chatBot(message: string): Promise<any> {
   return (await axios.post('https://api.openai.com/v1/chat/completions', {
     model: "gpt-3.5-turbo",
     messages: [{"role": "user", "content": message }],
-    temperature: 0.1,
+    temperature: 0.25,
     max_tokens: 256
   }, {
     headers: {
-      'Authorization': 'Bearer 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',
+      'Authorization': 'Bearer YOUR_TOKEN',
       'Content-Type': 'application/json'
     }
   })).data as any;

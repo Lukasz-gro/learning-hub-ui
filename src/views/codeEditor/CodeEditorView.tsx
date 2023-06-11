@@ -22,6 +22,7 @@ type Props = {
   status: string;
   setStatus: (newStatus: string) => void;
   listenStatusChange: (submitId: string) => void;
+  problemId: string;
 }
 
 export default function CodeEditorView({
@@ -34,7 +35,8 @@ export default function CodeEditorView({
   setTheme,
   status,
   setStatus,
-  listenStatusChange
+  listenStatusChange,
+  problemId
 }: Props) {
   const { notifyInformation } = useNotifications();
   const [selectedOption, setSelectedOption] = useState<number>(0);
@@ -42,11 +44,11 @@ export default function CodeEditorView({
   const submitStatusContext = useContext(SubmitStatusContext);
 
   const onSubmit = () => {
-    if((new Date().getTime() - lastClicked.getTime()) / 1000 < 10) {
+    if((new Date().getTime() - lastClicked.getTime()) / 1000 < 3) {
       return;
     }
     setLastClicked(new Date());
-    queueCode(userLogin, code, mapOfLanguages.get(language)!, 1, 1)
+    queueCode(userLogin, code, mapOfLanguages.get(language)!, problemId, 1)
       .then(response => {
         notifyInformation(`Scheduled submit: ${response.id}`);
         submitStatusContext.addStatusListener?.(response.id);
