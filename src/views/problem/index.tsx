@@ -48,13 +48,7 @@ export default function Problem() {
     )
   }
   
-  const description = `The task is to arrange a given set of numbers 
-  in ascending order and return the sorted array. For instance, if the input array is [5,2,3,1], the output should be [1,2,3,5]. Sorting the array entails changing the order of the numbers in the array such that the smallest numbers come first and the largest numbers come last. 
-  After sorting, some numbers will remain in the same position while others will be moved to new positions.<br/><br/>
-  First number is a number of numbers to sort. <br/><br/>
-  <span style={{ fontWeight: "bold" }}>Example 1</span><br/><span style={{ fontWeight: "bold" }}>Input:</span> 4 5 2 3 1 <br/>
-  <span style={{ fontWeight: "bold" }}>Output:</span> 1 2 3 5
-  `
+  const description = data.description;
 
   const createMessage = (option: string) => {
     return `This is problem statement: ${description}. This is my code: ${codeEditor.code}. ${option}`;
