@@ -15,6 +15,7 @@ import useCodeEditor from "../codeEditor/useCodeEditor";
 import useProblemStatus from "./useProblemStatus";
 import { UserContext } from "../../contexts/UserContext";
 import HistorySolution from "./HistorySolution";
+import useSubmitHistory from "./useSubmitHistory";
 
 const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faArrowLeft];
 
@@ -25,6 +26,7 @@ export default function Problem() {
   const [selectedType, setSelectedType] = useState<number>(0);
   const codeEditor = useCodeEditor();
   const problemStatus = useProblemStatus();
+  const submitHistory = useSubmitHistory();
   const userContext = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -61,9 +63,9 @@ export default function Problem() {
   const navigationOption = [<ProblemDescription description={data.description} />, 
     <ProblemDescription description={data.description} />,
     <ChatWindow userId={userContext.login} problemId={problemId || "-1"} createMessage={createMessage}/>,
-    <SubmitsHistory />];
+    <SubmitsHistory userId={userContext.login} problemId={problemId || "-1"} setSelectedSubmit={submitHistory.setSelectedSubmit} />];
 
-  const codeEditorType = [<CodeEditorView { ...codeEditor } { ...problemStatus }/>, <HistorySolution { ...codeEditor } { ...problemStatus }/>];
+  const codeEditorType = [<CodeEditorView { ...codeEditor } { ...problemStatus }/>, <HistorySolution { ...codeEditor } { ...problemStatus } submit={submitHistory.selectedSubmit}/>];
 
   const onPositionClick = (position: number) => {
     if (position === navigationIcons.length - 1) {

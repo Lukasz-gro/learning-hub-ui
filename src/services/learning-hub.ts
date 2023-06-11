@@ -9,6 +9,7 @@ export interface Submit {
   code: string;
   status: string;
   errorMessage: string;
+  date?: string;
 }
 
 export async function queueCode(code: string | undefined, language: string, problemId: number, testCase: number): Promise<Submit> {

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Problem } from "../courses/service.dto";
 import "./Problem.css"
-import { Table } from "react-bootstrap";
 
 type Props = {
   problems: Problem[];
@@ -11,16 +10,17 @@ type Props = {
 type RowProps = {
   problem: Problem;
   courseId: string;
+  status?: string;
 }
 
-function ProblemRow({ problem, courseId }: RowProps) {
+function ProblemRow({ problem, courseId, status }: RowProps) {
   const navigate = useNavigate();
   
   return (
     <tr>
       <td>{problem.id}</td>
       <td onClick={() => navigate(`/code/${courseId}/${problem.id}`)}>{problem.name}</td>
-      <td>To do</td>
+      <td>{status || "To do"}</td>
     </tr>
   );
 }
@@ -34,7 +34,7 @@ export default function ProblemsList({ problems, courseId }: Props) {
             <th>Name</th>
             <th>Status</th>
           </tr>
-          {problems.map(problem => <ProblemRow key={problem.id} problem={problem} courseId={courseId}/>)}
+          {problems.map(problem => <ProblemRow key={problem.id} problem={problem} courseId={courseId} status={problem.status}/>)}
       </table>
     </div>
   );
