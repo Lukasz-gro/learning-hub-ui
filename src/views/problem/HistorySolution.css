@@ -1,0 +1,49 @@
+.container-solution-history {
+    position: relative;
+    width: 40%;
+    left: 2%;
+    float: left;
+    font-family: 'Gotham', sans-serif;
+}
+
+.label-solution-history {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 50px;
+    background-color:#2e2e2e;
+    margin-top: 0px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-bottom: 2px solid #454545;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.content-solution-history {
+    margin-top: -8px;
+    background-color: #1E1E1E;
+    height: 69vh;
+}
+
+.propertie {
+    float: left;
+    margin: 3%;
+    margin-right: 20%;
+    color: #dedede;
+    font-size: 23px;
+}
+
+.editor-container-history {
+    clear: both;
+    border: solid 1px #525252;
+    height: 42vh;
+    width: 90%;
+    padding: 10px;
+    margin-left: 5%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+

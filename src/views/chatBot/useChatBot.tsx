@@ -10,7 +10,7 @@ async function chatBot(message: string): Promise<any> {
     max_tokens: 256
   }, {
     headers: {
-      'Authorization': 'Bearer USE_YOUR_TOKEN',
+      'Authorization': 'Bearer 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',
       'Content-Type': 'application/json'
     }
   })).data as any;

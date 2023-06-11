@@ -26,6 +26,7 @@ export default function Courses() {
 
   return (
     <div className="main-container">
+      <div className="course-label">Choose a course available to you supported by <b style={{color: "#188abb"}}>AI</b></div>
       <div className="set-of-cards">
         {data.map(course => (
           <Link key={course.id} to={`/course/${course.id}/main`} style={{ textDecoration: 'none' }}>

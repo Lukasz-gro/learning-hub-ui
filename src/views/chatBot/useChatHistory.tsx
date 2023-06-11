@@ -7,11 +7,11 @@ interface ChatHistory {
 }
 
 export async function getChatHistory(userId: string, problemId: string): Promise<ChatHistory[]> {
-  return (await axios.get(`/v1/auth/chat-bot/${userId}/${problemId}/history`)).data as ChatHistory[];
+  return (await axios.get(`/v1/chat-bot/${userId}/${problemId}/history`)).data as ChatHistory[];
 }
 
 export async function addMessage(userId: string, problemId: string, chatMessage: ChatHistory): Promise<any> {
-  return (await axios.post(`/v1/auth/chat-bot/add-message`, { 
+  return (await axios.post(`/v1/chat-bot/add-message`, { 
     message: chatMessage.message,
     isUser: chatMessage.isUser,
     username: userId,

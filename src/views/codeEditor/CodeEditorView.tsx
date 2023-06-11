@@ -12,6 +12,7 @@ import TestsArea from './TestsArea';
 import { Language, Theme, mapOfLanguages } from './useCodeEditor';
 
 type Props = {
+  userLogin: string;
   code: string | undefined;
   setCode: (newCode: string | undefined) => void;
   language: Language;
@@ -24,6 +25,7 @@ type Props = {
 }
 
 export default function CodeEditorView({
+  userLogin,
   code,
   setCode,
   language,
@@ -44,7 +46,7 @@ export default function CodeEditorView({
       return;
     }
     setLastClicked(new Date());
-    queueCode(code, mapOfLanguages.get(language)!, 1, 1)
+    queueCode(userLogin, code, mapOfLanguages.get(language)!, 1, 1)
       .then(response => {
         notifyInformation(`Scheduled submit: ${response.id}`);
         submitStatusContext.addStatusListener?.(response.id);

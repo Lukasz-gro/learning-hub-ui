@@ -5,7 +5,7 @@ type Props = {
 export default function CompilerResults(props:Props) {
     return (
         <div className="compiler-result">
-            <textarea>
+            <textarea readOnly>
                 { props.status || "Result" }
             </textarea>
         </div> 
