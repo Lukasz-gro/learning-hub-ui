@@ -20,7 +20,7 @@
   position: relative; 
 }
 
-svg path{
+g > path{
   stroke: #ffff;
   stroke-width: 10;
   stroke-dasharray: 100;

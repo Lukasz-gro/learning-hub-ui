@@ -29,7 +29,9 @@ export default function SubmitsHistory({ userId, problemId, setSelectedSubmit }:
     getSubmitHistory(userId, problemId)
       .then(response => {
         setSubmitHistory(response);
-        setSelectedSubmit(response[0]);
+        if(response.length > 0) {
+          setSelectedSubmit(response[0]);
+        }
       })
       .catch(console.log);
   }, []);

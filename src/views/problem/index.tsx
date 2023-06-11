@@ -65,7 +65,7 @@ export default function Problem() {
     <ChatWindow userId={userContext.login} problemId={problemId || "-1"} createMessage={createMessage}/>,
     <SubmitsHistory userId={userContext.login} problemId={problemId || "-1"} setSelectedSubmit={submitHistory.setSelectedSubmit} />];
 
-  const codeEditorType = [<CodeEditorView { ...codeEditor } { ...problemStatus }/>, <HistorySolution { ...codeEditor } { ...problemStatus } submit={submitHistory.selectedSubmit}/>];
+  const codeEditorType = [<CodeEditorView userLogin={userContext.login} { ...codeEditor } { ...problemStatus }/>, <HistorySolution { ...codeEditor } { ...problemStatus } submit={submitHistory.selectedSubmit}/>];
 
   const onPositionClick = (position: number) => {
     if (position === navigationIcons.length - 1) {
