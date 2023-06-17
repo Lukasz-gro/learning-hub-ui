@@ -1,21 +1,23 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-interface ChatHistory {
+export interface ChatHistory {
   message: string;
   isUser: boolean;
+  messageType: string;
 }
 
 export async function getChatHistory(userId: string, problemId: string): Promise<ChatHistory[]> {
   return (await axios.get(`/v1/chat-bot/${userId}/${problemId}/history`)).data as ChatHistory[];
 }
 
-export async function addMessage(userId: string, problemId: string, chatMessage: ChatHistory): Promise<any> {
+export async function addMessage(userId: string, problemId: string, chatMessage: ChatHistory): Promise<ChatHistory[]> {
   return (await axios.post(`/v1/chat-bot/add-message`, { 
     message: chatMessage.message,
     isUser: chatMessage.isUser,
     username: userId,
-    problemId
+    problemId,
+    messageType: chatMessage.messageType
   })).data as ChatHistory[];
 }
 
