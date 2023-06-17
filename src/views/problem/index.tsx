@@ -17,7 +17,7 @@ import { UserContext } from "../../contexts/UserContext";
 import HistorySolution from "./HistorySolution";
 import useSubmitHistory from "./useSubmitHistory";
 
-const navigationIcons = [faFileLines, faBell, faComments, faClockRotateLeft, faArrowLeft];
+const navigationIcons = [faFileLines, faComments, faClockRotateLeft, faArrowLeft];
 
 export default function Problem() {
   const { problemId } = useParams();
@@ -47,11 +47,8 @@ export default function Problem() {
       </div>
     )
   }
-  
-  const description = problem.description;
 
-  const navigationOption = [<ProblemDescription description={problem.description} />, 
-    <ProblemDescription description={problem.description} />,
+  const navigationOption = [<ProblemDescription problem={problem} />, 
     <ChatWindow 
       userId={userContext.login} 
       problemId={problemId || "-1"} 

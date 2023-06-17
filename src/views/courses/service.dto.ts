@@ -1,7 +1,8 @@
 export interface Course {
   id: number,
   name: string,
-  description: string
+  description: string,
+  shortDescription?: string;
 }
 
 export interface Problem {
