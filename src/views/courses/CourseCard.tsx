@@ -19,7 +19,7 @@ function changeBackground(e: any) {
   target.style.setProperty("--mouse-y", `${y}px`);
 }
 
-export default function CourseCard({ course: { name, description }}: Props) {
+export default function CourseCard({ course: { name, shortDescription }}: Props) {
   return (
     <div className="courseCardFrame" onMouseMove={changeBackground}>
       <div className="card-content">
@@ -30,7 +30,7 @@ export default function CourseCard({ course: { name, description }}: Props) {
           <div className="card-info">
             <div className="card-info-title">
               <h3>{name}</h3>  
-              <h4>{description}</h4>
+              <h4>{shortDescription}</h4>
             </div>    
           </div>
         </div>

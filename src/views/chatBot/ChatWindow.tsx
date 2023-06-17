@@ -19,8 +19,8 @@ export default function ChatWindow({
 }: Props) {
     const { chatHistory, askQuestion } = useChatBot(userId, problemId);
 
-    const questionOption = (message: string, prompt: string) => {
-        askQuestion(message, prompt);
+    const questionOption = (message: string, prompt: string, messageType: string) => {
+        askQuestion(message, prompt, messageType);
     };
     
     const selectClassName = (isUser: boolean) => {
@@ -43,7 +43,7 @@ export default function ChatWindow({
                 </div>))
                 } 
             </div>
-            <QuestionForBotLabel askQuestion={questionOption} code={code} problem={problem}/>
+            <QuestionForBotLabel askQuestion={questionOption} code={code} problem={problem} chatHistory={chatHistory.data}/>
         </div>
     )
 }

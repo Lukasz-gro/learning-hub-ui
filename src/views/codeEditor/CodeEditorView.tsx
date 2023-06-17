@@ -59,6 +59,7 @@ export default function CodeEditorView({
   }
 
   const options = [<CompilerResults status={status} key={status}/>, <TestsArea status={"lipka"} key={"1"} />];
+
   return <div className="editor-container">
         <div className="editor-options">
       <Dropdown>
@@ -83,7 +84,7 @@ export default function CodeEditorView({
     <div className="user-info">
       <div className = "buttons-nav">
         <button onClick={() => setSelectedOption(0)} className="user-view-button">Results</button>
-        <button onClick={() => setSelectedOption(1)} className="user-view-button">Tests</button>
+        {/* <button onClick={() => setSelectedOption(1)} className="user-view-button">Tests</button> */}
       </div>
       {options[selectedOption]}
     </div>
