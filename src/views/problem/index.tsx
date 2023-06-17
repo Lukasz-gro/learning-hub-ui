@@ -63,7 +63,7 @@ export default function Problem() {
       navigate(-1)
       setSelectedOption(1);
       return;
-    } else if (position === 3) {
+    } else if (position === 2) {
       setSelectedType(1);
     } else {
       setSelectedType(0);
