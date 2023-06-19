@@ -84,7 +84,7 @@ export default function CodeEditorView({
     <div className="user-info">
       <div className = "buttons-nav">
         <button onClick={() => setSelectedOption(0)} className="user-view-button">Results</button>
-        {/* <button onClick={() => setSelectedOption(1)} className="user-view-button">Tests</button> */}
+        <button onClick={() => setSelectedOption(1)} className="user-view-button">Tests</button>
       </div>
       {options[selectedOption]}
     </div>
